@@ -1,4 +1,5 @@
 import "./App.css";
+import Age from "./component/Age";
 import NewTodo from "./component/NewTodo";
 // import Todo from './component/todo'
 import Count from "./component/count";
@@ -36,10 +37,10 @@ function App() {
       {/* <RenderProps >
       {(count,handleCounter)=><button onClick={handleCounter}> Counter:{count}</button>}
         </RenderProps> */}
-      {/* {ageCal}
+      {/* {ageCal} */}
         
        
-      <Age {...{handleCount}}/> */}
+      <Age/>
     </>
   );
 }
