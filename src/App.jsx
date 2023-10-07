@@ -1,47 +1,56 @@
 import "./App.css";
-import Age from "./component/Age";
-import NewTodo from "./component/NewTodo";
-// import Todo from './component/todo'
-import Count from "./component/count";
-// import Age from "./component/Age";
-// import RenderProps from "./component/RenderProps";
-// import { useCallback, useEffect, useMemo, useState } from "react";
-import CounterContextProvider from "./context/CounterContextProvider";
-import TodoContextProvider from "./context/TodoContextProvider";
+import {BrowserRouter,Route,RouterProvider,Routes, createBrowserRouter} from 'react-router-dom'
+import Homepage from "./page/Homepage";
+import Contact from "./page/Contact";
+import Skill from "./page/Skill";
+import About from "./page/About";
+import SkillDetails from "./page/SkillDetails";
+import ErrorPage from "./page/ErrorPage";
+import AppLayout from "./Layout/AppLayout";
+
+const routeList=createBrowserRouter([
+  {
+    element:<AppLayout/>,
+    children:[{
+      path:'/',
+      element:<Homepage/>
+    },{
+      path:'/about',
+      element:<About/>
+    },{
+      path:'/skill',
+      element:<Skill/>,
+      children:[{path:':skill',element:<SkillDetails/>}]
+    },{
+      path:'/contact',
+      element:<Contact/>
+    },{
+      path:'/*',
+      element:<ErrorPage/>
+    }]
+  }
+  
+])
 
 function App() {
-  // const {count}=useContext(CounterContext)
-  // console.log({count})
-  //   const [count, setCount]=useState(0)
-  //   const handleCount =useCallback(()=>{
-  //     setCount(prev=>prev+1)
-  //   },[])
-  //   useEffect(()=>{
-  // console.log('i am in useEffect')
-
-  // //   },[])
-  // const ageCal = useMemo(()=>{
-  //   for (let i=0; i<1000; i++)console.log(i)
-  //   console.log('while loop is end')
-  //   },[count])
   return (
-    <>
-      <h1>Hello world!</h1>
-      <CounterContextProvider>
-        {" "}
-        <Count />
-      </CounterContextProvider>
-      <TodoContextProvider>
-        <NewTodo />
-      </TodoContextProvider>
-      {/* <RenderProps >
-      {(count,handleCounter)=><button onClick={handleCounter}> Counter:{count}</button>}
-        </RenderProps> */}
-      {/* {ageCal} */}
-        
+    // <BrowserRouter>
+    // <Routes>
+    //   <Route path="/" element={<Homepage/>}/>
+    //   <Route path="/about" element={<About/>}/>
+    //   <Route path="/skill" element={<Skill/>} >
+    //     {/* <Route path=":skill" element={<SkillDetails/>}/> */}
+    //     </Route>
+    //   <Route path="/contact" element={<Contact/>}/>
+    //   <Route path="/skill/:skill" element={<SkillDetails/>}/>
+    //   <Route path="/*" element={<ErrorPage/>}/>
+    // </Routes>
+    // </BrowserRouter>
+    <div>
        
-      <Age/>
-    </>
+      <RouterProvider router={routeList}/>
+    </div>
+   
   );
 }
 

@@ -3,6 +3,7 @@ import { TodoContext } from "../context/TodoContextProvider";
 
 const NewTodo = () => {
   const { todo, todoDispatch, count, countDispatch } = useContext(TodoContext);
+  const [todo, todoDispatch] = useReducer(reducer, {title:'',description:'',list:[]});
   const { title, description, list } = todo;
   // useEffect(() => {
   //   const addtodo = () => {
