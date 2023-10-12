@@ -16,6 +16,8 @@ import AppLayout from "./Layout/AppLayout";
 import AuthLayout from "./Layout/AuthLayout";
 import Login from "./page/Login";
 import SignUp from "./page/SignUp";
+import { Provider } from "react-redux";
+import {store} from './redux/store'
 
 const routeList = createBrowserRouter([
   {
@@ -39,7 +41,6 @@ const routeList = createBrowserRouter([
       {
         path: "/skill",
         element: <Skill />,
-        // children:[]
       },
       {
         path: "/contact",
@@ -69,7 +70,8 @@ function App() {
     // </Routes>
     // </BrowserRouter>
     <div>
-      <RouterProvider router={routeList} />
+      <Provider store={store}><RouterProvider router={routeList} /></Provider>
+      
     </div>
   );
 }

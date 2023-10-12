@@ -18,6 +18,7 @@ const SignUp = () => {
     }
   return (
     <div>
+        <h1>Sign Up page</h1>
         <form onSubmit={submitHandler}>
             <input onChange={(e)=>setUserData(prev=>{return {...prev,username:e.target.value}})}/>
             <input onChange={(e)=>setUserData(prev=>{return {...prev,password:e.target.value}})}/>
