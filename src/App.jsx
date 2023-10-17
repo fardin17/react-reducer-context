@@ -17,7 +17,10 @@ import AuthLayout from "./Layout/AuthLayout";
 import Login from "./page/Login";
 import SignUp from "./page/SignUp";
 import { Provider } from "react-redux";
-import {store} from './redux/store'
+// import { store } from "./redux/store";
+import Products from "./component/Products";
+import CartProvider from "./context/CartProvider";
+import { store2 } from "./redux-toolkit/store";
 
 const routeList = createBrowserRouter([
   {
@@ -25,14 +28,29 @@ const routeList = createBrowserRouter([
     children: [
       { path: "/auth/login", element: <Login /> },
       { path: "/auth/signup", element: <SignUp /> },
+      {
+        path: "/products",
+        element: (
+          <CartProvider>
+            <Products />
+          </CartProvider>
+        ),
+      },
     ],
   },
   {
     element: <AppLayout />,
     children: [
+      { path: "/", element: <Homepage /> },
       {
-        path: "/",
-        element: <Homepage />,
+        path: "/product",
+        element: (
+        
+          <CartProvider>
+          <Products />
+        </CartProvider>
+          
+        ),
       },
       {
         path: "/about",
@@ -70,8 +88,8 @@ function App() {
     // </Routes>
     // </BrowserRouter>
     <div>
-      <Provider store={store}><RouterProvider router={routeList} /></Provider>
-      
+        <Provider store={store2}><RouterProvider router={routeList} /></Provider>
+       
     </div>
   );
 }
